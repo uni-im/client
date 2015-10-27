@@ -1,10 +1,7 @@
-import 'dart:html';
-
 import 'package:client/client.dart';
 
 void main() {
-  Awesome you = new Awesome();
-
-  querySelector('#output').text =
-      you.isAwesome ? 'You awesome!' : 'You could be awesome';
+  var client = new MockClient();
+  client.joinChannel(new Channel('Awesome Possum'));
+  client.joinChannel(new Channel("Daffy Duck"));
 }
