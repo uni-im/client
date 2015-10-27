@@ -2,7 +2,7 @@ name: 'client'
 version: 0.0.1
 description: An absolute bare-bones web app.
 authors:
-  - Zach Faulkner
+  - Zac Falkner <falkzach@gmail.com>
   - Ben Campbell <benji@benjica.com>
 
 environment:
