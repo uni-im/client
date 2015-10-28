@@ -1,3 +1,1 @@
-library client;
-
-export "package:client/src/client.dart";
+export "package:client/src/transport_client.dart";
