@@ -1,1 +1,3 @@
-class Message {}
+class Message {
+  // TODO: Implement
+}

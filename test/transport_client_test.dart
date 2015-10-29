@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 import 'package:client/src/message.dart';
 import 'package:client/src/transport_client.dart';
 
-import 'stubs.dart';
+import 'utils/stubs.dart';
 
 void main() {
   group('TransportClient', () {
