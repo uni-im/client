@@ -1,7 +1,7 @@
 import 'package:client/src/channel.dart';
 import 'package:client/src/message.dart';
 
-class TransportClient {
+abstract class TransportClient {
   List<Channel> _channels = new List();
   Set<Channel> _subscriptions = new Set<Channel>();
 
@@ -12,11 +12,15 @@ class TransportClient {
 
   bool leave(Channel c) => _subscriptions.remove(c);
 
-  void send(Channel c, Message m) => notifySubscribers(c, m);
+  void send(Channel c, Message m);
 
   void notifySubscribers(Channel c, Message m) {
     _subscriptions
         .where((Channel subscription) => subscription == c)
-        .forEach((Channel c) => c.notify(m));
+        .forEach((Channel c) => c.recieve(m));
   }
+}
+
+class LoopbackTransportClient extends TransportClient {
+  void send(Channel c, Message m) => notifySubscribers(c, m);
 }
