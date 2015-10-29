@@ -2,9 +2,8 @@ import 'package:client/src/message.dart';
 
 abstract class Channel {
   List<Message> _messages = new List<Message>();
-  final String name;
 
-  Channel(this.name);
+  Channel();
 
   Iterable<Message> get messages => _messages;
 
@@ -12,5 +11,12 @@ abstract class Channel {
 }
 
 class GroupChannel extends Channel {
-  GroupChannel(String name) : super(name);
+  String title;
+  String topic;
+  Channel parent;
+  Iterable<Channel> subChannels;
+
+  GroupChannel(this.title) : super();
 }
+
+class PrivateChannel extends Channel {}
