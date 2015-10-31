@@ -1,4 +1,4 @@
-import 'package:client/src/message.dart';
+import 'package:client/src/messages/message.dart';
 import 'package:client/src/agent.dart';
 import 'package:client/src/FileFactory.dart';
 

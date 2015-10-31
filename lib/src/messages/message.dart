@@ -1,3 +1,3 @@
-class Message {
-  // TODO: Implement
+abstract class Message {
+  void render();
 }

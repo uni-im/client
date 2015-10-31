@@ -1,8 +1,9 @@
-class File {}
+import 'dart:async';
+
+import 'package:client/src/messages/file.dart';
 
 class FileFactory {
-  File createFile() {
-    // TODO: Implement
-    return null;
+  Future<File> createFile() async {
+    return new File();
   }
 }

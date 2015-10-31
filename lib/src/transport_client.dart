@@ -1,5 +1,5 @@
 import 'package:client/src/channel.dart';
-import 'package:client/src/message.dart';
+import 'package:client/src/messages/message.dart';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();
