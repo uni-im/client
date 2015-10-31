@@ -1,10 +1,9 @@
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:client/src/message.dart';
-import 'package:client/src/transport_client.dart';
+import 'package:client/src/client/transport_client.dart';
 
-import 'utils/stubs.dart';
+import 'utils/mocks.dart';
 
 void main() {
   group('TransportClient', () {
@@ -31,7 +30,7 @@ void main() {
 
     test('should notify correct channel', () {
       List<MockChannel> channels = [new MockChannel(), new MockChannel()];
-      Message message = new Message();
+      MockMessage message = new MockMessage();
 
       channels.forEach(client.join);
       client.notifySubscribers(channels[1], message);
