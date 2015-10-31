@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 
 import 'package:client/src/client/channel.dart';
-import 'utils/stubs.dart';
+import 'utils/mocks.dart';
 
 void main() {
   group('GroupChannel', () {

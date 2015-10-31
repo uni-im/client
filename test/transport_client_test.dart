@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 import 'package:client/src/client/transport_client.dart';
 
-import 'utils/stubs.dart';
+import 'utils/mocks.dart';
 
 void main() {
   group('TransportClient', () {
