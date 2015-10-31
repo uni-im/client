@@ -1,7 +1,7 @@
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:client/src/transport_client.dart';
+import 'package:client/src/client/transport_client.dart';
 
 import 'utils/stubs.dart';
 

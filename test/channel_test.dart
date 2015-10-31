@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:client/src/channel.dart';
+import 'package:client/src/client/channel.dart';
 import 'utils/stubs.dart';
 
 void main() {

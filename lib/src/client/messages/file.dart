@@ -1,4 +1,4 @@
-import 'package:client/src/messages/message.dart';
+import 'package:client/src/client/messages/message.dart';
 
 class File extends Message {
   String title;
