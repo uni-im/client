@@ -13,6 +13,7 @@ dependencies:
   dart_to_js_script_rewriter: '^0.1.0'
 
 dev_dependencies:
+  mockito: '^0.11.0'
   test: any
 
 transformers:
