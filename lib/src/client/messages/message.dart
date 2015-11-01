@@ -6,6 +6,7 @@ abstract class Message {
 
 class TextMessage extends Message {
   String message;
+  DateTime timestamp = new DateTime.now();
 
   TextMessage(this.message);
 

@@ -22,11 +22,9 @@
     <ul>
       <li ng-repeat='channel in client.channels'>
         {{ channel.title }}
-        <ul>
-          <li ng-repeat='message in channel.messages'>
-            {{ message.render() }}
-          </li>
-        </ul>
+        <dl>
+            <message ng-repeat="message in channel.messages" model="message"></message>
+        </dl>
       </li>
     </ul>
 

@@ -34,7 +34,7 @@ class LoopbackTransportClient extends TransportClient {
     new Timer.periodic(new Duration(seconds: 2), (Timer t) {
       var randomChannel = (channels.toList()..shuffle()).first;
       var now = new DateTime.now();
-      send(randomChannel, new TextMessage("$now - Hello world!"));
+      send(randomChannel, new TextMessage("Hello world!"));
     });
   }
 
