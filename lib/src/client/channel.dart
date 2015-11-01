@@ -6,6 +6,8 @@ abstract class Channel {
   List<Message> _messages = new List<Message>();
   FileFactory _fileFactory;
 
+  String title;
+
   FileFactory get files => _fileFactory;
   Iterable<Message> get messages => _messages;
 

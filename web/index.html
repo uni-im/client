@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
   <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +8,27 @@
       <title>client</title>
 
       <link rel="stylesheet" href="styles/main.css">
+      <script src="packages/web_components/webcomponents.js"></script>
+      <script src="packages/web_components/dart_support.js"></script>
   </head>
 
   <body>
 
     <div id="output"></div>
+    <h1>Chat Client</h1>
+    <p>This is a simple mock of ux stuff</p>
+
+    <h2>Channels</h2>
+    <ul>
+      <li ng-repeat='channel in client.channels'>
+        {{ channel.title }}
+        <ul>
+          <li ng-repeat='message in channel.messages'>
+            {{ message.render() }}
+          </li>
+        </ul>
+      </li>
+    </ul>
 
   <script async type="application/dart" src="main.dart"></script>
   <script async src="packages/browser/dart.js"></script>
