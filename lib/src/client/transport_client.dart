@@ -1,6 +1,5 @@
 import 'package:client/src/client/channel.dart';
 import 'package:client/src/client/messages/message.dart';
-import 'dart:async';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();
@@ -30,12 +29,6 @@ class LoopbackTransportClient extends TransportClient {
     ["alpha", "beta", "gamma"].forEach(createChannel);
 
     channels.forEach(join);
-
-    new Timer.periodic(new Duration(seconds: 2), (Timer t) {
-      var randomChannel = (channels.toList()..shuffle()).first;
-      var now = new DateTime.now();
-      send(randomChannel, new TextMessage("Hello world!"));
-    });
   }
 
   void send(Channel c, Message m) => notifySubscribers(c, m);

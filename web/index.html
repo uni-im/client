@@ -16,17 +16,21 @@
 
     <div id="output"></div>
     <h1>Chat Client</h1>
-    <p>This is a simple mock of ux stuff</p>
 
     <h2>Channels</h2>
+    <p>Click a channel name to select active channel</p>
     <ul>
-      <li ng-repeat='channel in client.channels'>
-        {{ channel.title }}
-        <dl>
+      <li ng-repeat='channel in client.channels' ng-click="selectChannel(channel)">
+        <p ng-class="{active: channel == selectedChannel }">{{ channel.title }}<p>
+        <dl ng-class="{inactive: channel != selectedChannel}">
             <message ng-repeat="message in channel.messages" model="message"></message>
         </dl>
       </li>
     </ul>
+    <p>Please type your message and hit enter</p>
+    <form ng-submit='sendMessage()'>
+      <input type="text" ng-model='messageBody'>
+    </form>
 
   <script async type="application/dart" src="main.dart"></script>
   <script async src="packages/browser/dart.js"></script>
