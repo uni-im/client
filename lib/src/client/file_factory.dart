@@ -1,3 +1,5 @@
+library client.src.client.file_factory;
+
 import 'dart:async';
 
 import 'package:client/src/client/messages/file.dart';

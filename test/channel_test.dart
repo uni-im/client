@@ -16,7 +16,7 @@ void main() {
     test('should add a message upon reciept', () {
       expect(channel.messages, isEmpty);
 
-      channel.recieve(message);
+      channel.receive(message);
       expect(channel.messages.contains(message), isTrue);
     });
   });

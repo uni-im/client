@@ -1,3 +1,5 @@
+library client.test.utils.mocks;
+
 import 'package:mockito/mockito.dart';
 
 import 'package:client/src/client/channel.dart';

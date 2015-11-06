@@ -1,6 +1,6 @@
 import 'package:client/src/client/messages/message.dart';
 import 'package:client/src/client/agent.dart';
-import 'package:client/src/client/FileFactory.dart';
+import 'package:client/src/client/file_factory.dart';
 
 abstract class Channel {
   List<Message> _messages = new List<Message>();
@@ -9,7 +9,7 @@ abstract class Channel {
   FileFactory get files => _fileFactory;
   Iterable<Message> get messages => _messages;
 
-  void recieve(Message m) => _messages.add(m);
+  void receive(Message m) => _messages.add(m);
 
   String get title;
 }
