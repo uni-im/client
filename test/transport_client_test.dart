@@ -35,8 +35,8 @@ void main() {
       channels.forEach(client.join);
       client.notifySubscribers(channels[1], message);
 
-      verifyNever(channels.first.recieve(message));
-      verify(channels.last.recieve(message));
+      verifyNever(channels.first.receive(message));
+      verify(channels.last.receive(message));
     });
   });
 }

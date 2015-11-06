@@ -17,7 +17,7 @@ abstract class TransportClient {
   void notifySubscribers(Channel c, Message m) {
     _subscriptions
         .where((Channel subscription) => subscription == c)
-        .forEach((Channel c) => c.recieve(m));
+        .forEach((Channel c) => c.receive(m));
   }
 }
 
