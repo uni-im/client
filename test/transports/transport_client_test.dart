@@ -1,11 +1,11 @@
-library test.transport_client_test;
+library test.transports.transport_client_test;
 
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'package:client/src/transports/transport_client.dart';
 
-import 'utils/mocks.dart';
+import '../utils/mocks.dart';
 
 void main() {
   group('TransportClient', () {

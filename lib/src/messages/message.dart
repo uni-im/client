@@ -13,6 +13,7 @@ abstract class Message {
     }
 
     // TODO: switch to enums for profit and value
+    // TODO: add other message types
     switch (payload['type']) {
       case 'markdown':
         return new MarkdownMessage(payload['body']);

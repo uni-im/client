@@ -1,4 +1,11 @@
-part of client.src.transports.transport_client;
+library client.src.transports.websocket_client;
+
+import 'dart:html';
+import 'dart:convert';
+
+import 'package:client/src/channel.dart';
+import 'package:client/src/messages/message.dart';
+import 'package:client/src/transports/transport_client.dart';
 
 class _WebSocketTransportContext {
   final Channel channel;

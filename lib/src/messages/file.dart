@@ -7,12 +7,17 @@ class File extends Message {
 
   File({this.title});
 
+  @override
   void render() {
     // TODO: implement render
   }
+
+  @override
+  Map marshal() => {'title': title};
 }
 
 class Image extends File {
+  @override
   void render() {
     // TODO: An image will render in line
   }

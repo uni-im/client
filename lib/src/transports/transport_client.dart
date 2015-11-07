@@ -1,14 +1,11 @@
 library client.src.transports.transport_client;
 
 import 'dart:async';
-import 'dart:html';
-import 'dart:convert';
 
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/message.dart';
 
 part 'loopback_transport_client.dart';
-part 'websocket_client.dart';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();

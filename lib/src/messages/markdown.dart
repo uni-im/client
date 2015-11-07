@@ -17,6 +17,7 @@ class MarkdownMessage extends Message {
   void add(Message m) => _children.add(m);
   bool remove(Message m) => _children.remove(m);
 
+  // TODO: Marshal children
   @override
   Map marshal() => {'type': 'markdown', 'body': body};
 }
