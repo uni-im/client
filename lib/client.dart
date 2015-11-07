@@ -1,1 +1,1 @@
-export "package:client/src/transport_client.dart";
+export "package:client/src/transports/transport_client.dart";
