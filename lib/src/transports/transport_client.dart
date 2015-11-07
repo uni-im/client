@@ -1,7 +1,10 @@
 library client.src.transports.transport_client;
 
+
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/message.dart';
+
+part 'loopback_transport_client.dart';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();
@@ -23,6 +26,3 @@ abstract class TransportClient {
   }
 }
 
-class LoopbackTransportClient extends TransportClient {
-  void send(Channel c, Message m) => notifySubscribers(c, m);
-}
