@@ -6,6 +6,8 @@ class MarkdownMessage extends Message {
   final List<Message> _children = new List<Message>();
   String body;
 
+  MarkdownMessage(this.body);
+
   void render() {
     // TODO: implement render
   }
@@ -14,4 +16,7 @@ class MarkdownMessage extends Message {
 
   void add(Message m) => _children.add(m);
   bool remove(Message m) => _children.remove(m);
+
+  @override
+  Map marshal() => {'type': 'markdown', 'body': body};
 }
