@@ -1,3 +1,5 @@
+library client.src.client.transports.transport_client;
+
 import 'package:client/src/client/channel.dart';
 import 'package:client/src/client/messages/message.dart';
 
@@ -7,6 +9,8 @@ abstract class TransportClient {
 
   Iterable<Channel> get channels => _channels;
   Iterable<Channel> get subscriptions => _subscriptions;
+
+  void createChannel(String name) => _channels.add(new GroupChannel(name));
 
   bool join(Channel c) => _subscriptions.add(c);
 
@@ -19,8 +23,4 @@ abstract class TransportClient {
         .where((Channel subscription) => subscription == c)
         .forEach((Channel c) => c.receive(m));
   }
-}
-
-class LoopbackTransportClient extends TransportClient {
-  void send(Channel c, Message m) => notifySubscribers(c, m);
 }

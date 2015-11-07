@@ -1,9 +1,9 @@
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:client/src/client/transport_client.dart';
 
 import 'utils/mocks.dart';
+import 'package:client/src/client/transports/loopback_transport_client.dart';
 
 void main() {
   group('TransportClient', () {
