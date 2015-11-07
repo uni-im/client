@@ -1,3 +1,5 @@
+library client.src.client.channel;
+
 import 'package:client/src/client/messages/message.dart';
 import 'package:client/src/client/agent.dart';
 import 'package:client/src/client/file_factory.dart';
@@ -12,8 +14,6 @@ abstract class Channel {
   Iterable<Message> get messages => _messages;
 
   void receive(Message m) => _messages.add(m);
-
-  String get title;
 }
 
 class GroupChannel extends Channel {

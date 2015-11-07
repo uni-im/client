@@ -1,13 +1,16 @@
+
 import 'package:angular/application_factory.dart';
 import 'package:di/annotations.dart';
-import 'package:client/client.dart';
-import 'package:client/src/client/messages/message.dart';
 import 'package:angular/angular.dart';
+
 import 'package:client/src/client/channel.dart';
+import 'package:client/src/client/messages/message.dart';
+import 'package:client/src/client/transports/websocket_transport_client.dart';
+import 'package:client/src/client/transports/transport_client.dart';
 
 @Injectable()
 class ImUiClient {
-  TransportClient client = new LoopbackTransportClient();
+  TransportClient client = new WebSocketTransportClient();
   Channel selectedChannel;
   String messageBody = '';
 
