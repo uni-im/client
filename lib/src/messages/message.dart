@@ -16,8 +16,9 @@ abstract class Message {
     // TODO: add other message types
     switch (payload['type']) {
       case 'markdown':
-        return new MarkdownMessage(payload['body']);
+        return new MarkdownMessage.fromMap(payload);
       default:
+        // TODO: Define some default type of message
         print('Recieved unknown message type: ${payload['type']}');
     }
   }
