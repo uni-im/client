@@ -1,8 +1,8 @@
-library client.src.client.file_factory;
+library client.src.file_factory;
 
 import 'dart:async';
 
-import 'package:client/src/client/messages/file.dart';
+import 'package:client/src/messages/file.dart';
 
 class FileFactory {
   Future<File> createFile() async {

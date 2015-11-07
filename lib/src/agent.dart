@@ -1,3 +1,5 @@
+library client.src.agent;
+
 class Agent {
   String name;
   String status;

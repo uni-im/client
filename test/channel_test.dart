@@ -1,6 +1,8 @@
+library test.channel_test;
+
 import 'package:test/test.dart';
 
-import 'package:client/src/client/channel.dart';
+import 'package:client/src/channel.dart';
 import 'utils/mocks.dart';
 
 void main() {
