@@ -5,16 +5,118 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="scaffolded-by" content="https://github.com/google/stagehand">
-      <title>client</title>
-
+      <title>Uni-IM Client</title>
+      <link rel="stylesheet" href="packages/bootstrap/css/bootstrap.css">
+      <link rel="stylesheet" href="packages/bootstrap/css/bootstrap-theme.css">
       <link rel="stylesheet" href="styles/main.css">
   </head>
 
   <body>
-
-    <div id="output"></div>
-
-  <script async type="application/dart" src="main.dart"></script>
-  <script async src="packages/browser/dart.js"></script>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Uni-IM Client</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;"></div>
+      </div>
+  </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 sidebar">
+                <h3>Subscriptions</h3>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">Rug Chat</a></li>
+                    <li><a href="#">Beta <span class="badge">2</span></a></li>
+                    <li><a href="#">Gamma</a></li>
+                    <li><a href="#">Delta <span class="badge">53</span></a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 messages">
+                <h1 class="page-header">Rug Chat</h1>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="lebowski64.png" alt="Mr Lebowski">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Mr Lebowski</h4>
+                        <p>Are you employed, sir?</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="dude64.png" alt="The Dude">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">The Dude</h4>
+                        <p>Employed?</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="lebowski64.png" alt="Mr Lebowski">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Mr Lebowski</h4>
+                        <p>You don't go out looking for a job dressed like that? On a weekday?</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="dude64.png" alt="The Dude">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">The Dude</h4>
+                        <p>Is this a... what day is this?</p>
+                        <img src="https://i.ytimg.com/vi/TCgeaNfcw-w/hqdefault.jpg">
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="lebowski64.png" alt="Mr Lebowski">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Mr Lebowski</h4>
+                        <p>Well, I do work sir, so if you don't mind...</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="dude64.png" alt="The Dude">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">The Dude</h4>
+                        <p>I do mind, the Dude minds. This will not stand, ya know, this aggression will not stand, man.</p>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-sm-9 message-input-area">
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Your messages...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <script async type="application/dart" src="main.dart"></script>
+      <script async src="packages/browser/dart.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="packages/bootstrap/js/bootstrap.js"></script>
   </body>
 </html>
