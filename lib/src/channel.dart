@@ -1,6 +1,8 @@
-import 'package:client/src/client/messages/message.dart';
-import 'package:client/src/client/agent.dart';
-import 'package:client/src/client/file_factory.dart';
+library client.src.channel;
+
+import 'package:client/src/messages/message.dart';
+import 'package:client/src/agent.dart';
+import 'package:client/src/file_factory.dart';
 
 abstract class Channel {
   List<Message> _messages = new List<Message>();

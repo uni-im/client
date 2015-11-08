@@ -1,5 +1,11 @@
-import 'package:client/src/client/channel.dart';
-import 'package:client/src/client/messages/message.dart';
+library client.src.transports.transport_client;
+
+import 'dart:async';
+
+import 'package:client/src/channel.dart';
+import 'package:client/src/messages/message.dart';
+
+part 'loopback_transport_client.dart';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();
@@ -19,8 +25,4 @@ abstract class TransportClient {
         .where((Channel subscription) => subscription == c)
         .forEach((Channel c) => c.receive(m));
   }
-}
-
-class LoopbackTransportClient extends TransportClient {
-  void send(Channel c, Message m) => notifySubscribers(c, m);
 }
