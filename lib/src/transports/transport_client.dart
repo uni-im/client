@@ -25,4 +25,12 @@ abstract class TransportClient {
         .where((Channel subscription) => subscription == c)
         .forEach((Channel c) => c.receive(m));
   }
+
+  Channel createChannel(String channelName)
+  {
+    //TODO: extend to private channels with an agent
+    Channel channel = new GroupChannel(channelName);
+    _channels.add(channel);
+    return channel;
+  }
 }
