@@ -40,5 +40,10 @@ void main() {
       verifyNever(channels.first.receive(message));
       verify(channels.last.receive(message));
     });
+
+    test('should create channel', () {
+      var channel = client.createChannel('Test Channel');
+      expect(client.channels.contains(channel), isTrue);
+    });
   });
 }

@@ -9,4 +9,8 @@ class Link extends Message {
   void render() {
     // TODO: implement render
   }
+
+  Map marshal() {
+    return new Map();
+  }
 }
