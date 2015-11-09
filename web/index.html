@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
   <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +9,9 @@
       <link rel="stylesheet" href="packages/bootstrap/css/bootstrap.css">
       <link rel="stylesheet" href="packages/bootstrap/css/bootstrap-theme.css">
       <link rel="stylesheet" href="styles/main.css">
+
+      <script src="packages/web_components/webcomponents.min.js"></script>
+      <script src="packages/web_components/dart_support.js"></script>
   </head>
 
   <body>
@@ -31,26 +34,12 @@
             <div class="col-xs-3 col-sm-3 col-md-3 sidebar">
                 <h3>Subscriptions</h3>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#">Rug Chat</a></li>
-                    <li><a href="#">Beta <span class="badge">2</span></a></li>
-                    <li><a href="#">Gamma</a></li>
-                    <li><a href="#">Delta <span class="badge">53</span></a></li>
+                    <li ng-repeat="channel in client.channels" ng-class="{active: channel == selectedChannel}" ng-click="selectChannel(channel)"><a href="#">{{ channel.title }}</a></li>
                 </ul>
             </div>
             <div class="col-xs-9 col-xs-offset-3col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 messages">
-                <h1 class="page-header">Rug Chat</h1>
-                <div class="media">
-                    <div class="media-left media-top">
-                        <a href="#">
-                            <img class="media-object" src="lebowski64.png" alt="Mr Lebowski">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Mr Lebowski</h4>
-                        <p>Are you employed, sir?</p>
-                    </div>
-                </div>
-                <div class="media">
+                <h1 class="page-header">{{ selectedChannel.title }}</h1>
+                <div ng-repeat="message in selectedChannel.messages" class="media">
                     <div class="media-left media-top">
                         <a href="#">
                             <img class="media-object" src="dude64.png" alt="The Dude">
@@ -58,56 +47,14 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">The Dude</h4>
-                        <p>Employed?</p>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left media-top">
-                        <a href="#">
-                            <img class="media-object" src="lebowski64.png" alt="Mr Lebowski">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Mr Lebowski</h4>
-                        <p>You don't go out looking for a job dressed like that? On a weekday?</p>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left media-top">
-                        <a href="#">
-                            <img class="media-object" src="dude64.png" alt="The Dude">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">The Dude</h4>
-                        <p>Is this a... what day is this?</p>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left media-top">
-                        <a href="#">
-                            <img class="media-object" src="lebowski64.png" alt="Mr Lebowski">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Mr Lebowski</h4>
-                        <p>Well, I do work sir, so if you don't mind...</p>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left media-top">
-                        <a href="#">
-                            <img class="media-object" src="dude64.png" alt="The Dude">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">The Dude</h4>
-                        <p>I do mind, the Dude minds. This will not stand, ya know, this aggression will not stand, man.</p>
+                        <p>{{ message.body }}</p>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-sm-9 message-input-area">
-                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Your messages...">
+                        <form ng-submit="sendMessage()" class="form">
+                            <input ng-model="messageText" type="text" class="form-control" id="exampleInputName2" placeholder="Your messages...">
+                        </form>
                     </div>
                 </div>
             </div>
