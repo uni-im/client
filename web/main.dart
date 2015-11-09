@@ -6,41 +6,37 @@ import 'package:client/src/transports/websocket_client.dart';
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/markdown.dart';
 
-
 @Injectable()
-class ImUniClient
-{
+class ImUniClient {
   TransportClient client;
   Channel selectedChannel;
   String messageText;
 
-  ImUniClient()
-  {
-    //TODO: fallback onError to loopback
-    WebSocket socket = new WebSocket('ws://magic-man.benjica.com:8081');
-    client = new WebSocketTransportClient(socket);
-//    client=  new LoopbackTransportClient();
+  ImUniClient() {
+    WebSocket ws = new WebSocket('ws://magic-man.benjica.com:8081');
+    ws
+      ..onOpen.first.then((_) => _init(new WebSocketTransportClient(ws)))
+      ..onError.first.then((_) => _init(new LoopbackTransportClient()));
+  }
 
-    ['foo', 'bar', 'biz', 'baz'].forEach(client.createChannel);
-    client.channels.forEach(client.join);
+  void _init(TransportClient c) {
+    client = c;
+
+    // TODO: Implement channel persistence across server
+    ['foo', 'bar', 'biz'].map(client.createChannel)..forEach(client.join);
     selectedChannel = client.channels.first;
   }
 
-  void selectChannel(Channel c)
-  {
+  void selectChannel(Channel c) {
     selectedChannel = c;
   }
 
-  void sendMessage()
-  {
+  void sendMessage() {
     MarkdownMessage m = new MarkdownMessage(messageText);
     client.send(selectedChannel, m);
   }
-
 }
 
-void main()
-{
-  applicationFactory()
-  .rootContextType(ImUniClient).run();
+void main() {
+  applicationFactory().rootContextType(ImUniClient).run();
 }
