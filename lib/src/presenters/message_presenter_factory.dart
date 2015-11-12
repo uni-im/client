@@ -12,13 +12,13 @@ abstract class PresenterFactory {
 
 class MessagePresenterFactory {
   MessagePresenter getPresenter(Message m) {
-    if(m is MarkdownMessage) return new MarkdownMessagePresenter();
-    if(m is Link) return new LinkPresenter();
-    if(m is File) return new FilePresenter();
-    if(m is Image) return new ImagePresenter();
+    if (m is MarkdownMessage) return new MarkdownMessagePresenter();
+    if (m is Link) return new LinkPresenter();
+    if (m is File) return new FilePresenter();
+    if (m is Image) return new ImagePresenter();
     throw new Exception(
-        'Cannot get a message presenter for unknown message type '
-            + m.runtimeType.toString() + '.'
-    );
+        'Cannot get a message presenter for unknown message type ' +
+            m.runtimeType.toString() +
+            '.');
   }
 }

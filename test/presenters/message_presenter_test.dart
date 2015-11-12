@@ -1,4 +1,5 @@
 library test.messages.message_test;
+
 import 'package:test/test.dart';
 import 'package:client/src/presenters/message_preseneter.dart';
 import '../utils/mocks.dart';
@@ -7,7 +8,6 @@ import 'package:mockito/mockito.dart';
 
 void main() {
   group('Message Presenter', () {
-
     LinkPresenter presenter;
     MockLink link;
 
@@ -32,6 +32,5 @@ void main() {
       expect(presenter.presentPlaintext(link),
           equals('Example Domain\t-\thttp://example.com'));
     });
-
   });
 }

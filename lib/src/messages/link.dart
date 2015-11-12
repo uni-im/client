@@ -6,8 +6,7 @@ class Link extends Message {
   String title;
   Uri ref;
 
-  Link(String url)
-  {
+  Link(String url) {
     ref = Uri.parse(url);
   }
 
