@@ -9,27 +9,27 @@ void main() {
   group('Message Presenter', () {
 
     LinkPresenter presenter;
-    MockLink message;
+    MockLink link;
 
     setUp(() {
       presenter = new LinkPresenter();
-      message = new MockLink();
-      when(message.getTitle()).thenReturn('Example Domain');
-      when(message.getRef()).thenReturn('http://example.com');
+      link = new MockLink();
+      when(link.getTitle()).thenReturn('Example Domain');
+      when(link.getRef()).thenReturn('http://example.com');
     });
 
     test('should generate valid html link', () {
-      expect(presenter.presentHTML(message),
+      expect(presenter.presentHTML(link),
           equals('<a href="http://example.com">Example Domain</a>'));
     });
 
     test('should generate valid markdown link', () {
-      expect(presenter.presentMarkdown(message),
+      expect(presenter.presentMarkdown(link),
           equals('[Example Domain](http://example.com)'));
     });
 
     test('should generage plain text link', () {
-      expect(presenter.presentPlaintext(message),
+      expect(presenter.presentPlaintext(link),
           equals('Example Domain\t-\thttp://example.com'));
     });
 
