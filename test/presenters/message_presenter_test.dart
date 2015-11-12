@@ -14,8 +14,8 @@ void main() {
     setUp(() {
       presenter = new LinkPresenter();
       link = new MockLink();
-      when(link.getTitle()).thenReturn('Example Domain');
-      when(link.getRef()).thenReturn('http://example.com');
+      when(link.title).thenReturn('Example Domain');
+      when(link.ref).thenReturn('http://example.com');
     });
 
     test('should generate valid html link', () {

@@ -28,16 +28,13 @@ class MarkdownMessagePresenter extends MessagePresenter {
 
 class LinkPresenter extends MessagePresenter {
   @override
-  String presentHTML(Link l) =>
-      '<a href="' + l.getRef().toString() + '">' + l.getTitle() + '</a>';
+  String presentHTML(Link l) => '<a href="${l.ref}">${l.title}</a>';
 
   @override
-  String presentMarkdown(Link l) =>
-      '[' + l.getTitle() + '](' + l.getRef().toString() + ')';
+  String presentMarkdown(Link l) => '[${l.title}](${l.ref})';
 
   @override
-  String presentPlaintext(Link l) =>
-      l.getTitle() + '\t-\t' + l.getRef().toString();
+  String presentPlaintext(Link l) => '${l.title}\t-\t${l.ref}';
 }
 
 class FilePresenter extends MessagePresenter {
