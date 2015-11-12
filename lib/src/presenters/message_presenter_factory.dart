@@ -15,8 +15,6 @@ class MessagePresenterFactory {
     if (m is Image) return new ImagePresenter();
     if (m is File) return new FilePresenter();
     throw new Exception(
-        'Cannot get a message presenter for unknown message type ' +
-            m.runtimeType.toString() +
-            '.');
+        'Cannot get a message presenter for unknown message type ${m.runtimeType}.');
   }
 }
