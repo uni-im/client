@@ -6,6 +6,11 @@ class Link extends Message {
   String title;
   Uri ref;
 
+  Link(String url)
+  {
+    ref = Uri.parse(url);
+  }
+
   void render() {
     // TODO: implement render
   }
@@ -13,4 +18,7 @@ class Link extends Message {
   Map marshal() {
     return new Map();
   }
+
+  String getTitle() => title;
+  Uri getRef() => ref;
 }
