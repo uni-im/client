@@ -1,7 +1,6 @@
 library test.messages.message_test;
 
 import 'package:test/test.dart';
-import 'package:mockito/mockito.dart';
 import '../utils/mocks.dart';
 import 'package:client/src/presenters/message_presenter_factory.dart';
 import 'package:client/src/presenters/message_preseneter.dart';

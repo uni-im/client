@@ -1,4 +1,4 @@
-library message_presenter;
+library client.src.presenters.message_presenter_factory.message_presenter;
 
 import 'package:client/src/messages/link.dart';
 import 'package:client/src/messages/message.dart';
