@@ -1,4 +1,5 @@
 library test.messages.message_test;
+
 import 'package:test/test.dart';
 import 'package:client/src/messages/message.dart';
 import 'package:client/src/messages/markdown.dart';
