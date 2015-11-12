@@ -6,16 +6,14 @@ import 'package:client/src/messages/markdown.dart';
 import 'package:client/src/messages/link.dart';
 import 'package:client/src/messages/file.dart';
 
-abstract class PresenterFactory {
-  MessagePresenter getPresenter(Message);
-}
-
 class MessagePresenterFactory {
-  MessagePresenter getPresenter(Message m) {
+  static MessagePresenter getPresenter(Message m) {
     if (m is MarkdownMessage) return new MarkdownMessagePresenter();
     if (m is Link) return new LinkPresenter();
-    if (m is File) return new FilePresenter();
+    //Image must come before File as Image is File.
+    //TODO: find better solution than ordering of ifs to handle polymorphism
     if (m is Image) return new ImagePresenter();
+    if (m is File) return new FilePresenter();
     throw new Exception(
         'Cannot get a message presenter for unknown message type ' +
             m.runtimeType.toString() +
