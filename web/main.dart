@@ -5,10 +5,12 @@ import 'dart:html';
 import 'package:client/src/transports/websocket_client.dart';
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/markdown.dart';
+import 'package:client/src/agent.dart';
 
 @Injectable()
 class ImUniClient {
   TransportClient client;
+  Agent currentAgent = new Agent.random();
   Channel selectedChannel;
   String messageText;
 
@@ -33,7 +35,10 @@ class ImUniClient {
 
   void sendMessage() {
     MarkdownMessage m = new MarkdownMessage(messageText);
+    m.author = currentAgent;
     client.send(selectedChannel, m);
+
+    (querySelector("#messageInput") as InputElement).value = "";
   }
 }
 

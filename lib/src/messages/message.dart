@@ -1,8 +1,10 @@
 library client.src.messages.message;
 
 import 'package:client/src/messages/markdown.dart';
+import 'package:client/src/agent.dart';
 
 abstract class Message {
+  Agent author;
   Message();
 
   /// The unmarshal factory function is used to instantiate messages based on
@@ -16,7 +18,10 @@ abstract class Message {
     // TODO: add other message types
     switch (payload['type']) {
       case 'markdown':
-        return new MarkdownMessage.fromMap(payload);
+        var message = new MarkdownMessage.fromMap(payload);
+        message.author = payload['author'] ?? "Unkown Author";
+
+        return message;
       default:
         // TODO: Define some default type of message
         print('Recieved unknown message type: ${payload['type']}');

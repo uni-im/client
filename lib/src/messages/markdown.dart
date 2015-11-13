@@ -1,6 +1,7 @@
 library client.src.messages.markdown;
 
 import 'package:client/src/messages/message.dart';
+import 'package:client/src/agent.dart';
 
 class MarkdownMessage extends Message {
   final List<Message> _children = new List<Message>();
@@ -9,7 +10,8 @@ class MarkdownMessage extends Message {
   MarkdownMessage(this.body);
 
   factory MarkdownMessage.fromMap(Map data) {
-    return new MarkdownMessage(data['body']);
+    var message = new MarkdownMessage(data['body']);
+    return message;
   }
 
   void render() {
@@ -22,5 +24,5 @@ class MarkdownMessage extends Message {
   bool remove(Message m) => _children.remove(m);
 
   @override
-  Map marshal() => {'type': 'markdown', 'body': body};
+  Map marshal() => {'type': 'markdown', 'author': author.name, 'body': body};
 }

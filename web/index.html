@@ -42,18 +42,18 @@
                 <div ng-repeat="message in selectedChannel.messages" class="media">
                     <div class="media-left media-top">
                         <a href="#">
-                            <img class="media-object" src="dude64.png" alt="The Dude">
+                            <img class="avatar media-object" src="http://api.adorable.io/avatars/64/{{message.author.name}}.png" alt="{{message.author.name}}'s avatar">
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">The Dude</h4>
+                        <h4 class="media-heading">{{message.author.name}}</h4>
                         <p>{{ message.body }}</p>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-sm-9 message-input-area">
                         <form ng-submit="sendMessage()" class="form">
-                            <input ng-model="messageText" type="text" class="form-control" id="exampleInputName2" placeholder="Your messages...">
+                            <input ng-model="messageText" type="text" class="form-control" id="messageInput" placeholder="Your messages...">
                         </form>
                     </div>
                 </div>
