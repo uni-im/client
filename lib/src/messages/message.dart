@@ -19,7 +19,7 @@ abstract class Message {
     switch (payload['type']) {
       case 'markdown':
         var message = new MarkdownMessage.fromMap(payload);
-        message.author = payload['author'] ?? "Unkown Author";
+        message.author = new Agent(payload['author'] ?? "Unkown Author");
 
         return message;
       default:
