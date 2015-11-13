@@ -20,6 +20,12 @@ body {
     padding-bottom: 50px;
 }
 
+.avatar {
+    border-radius: 25%;
+    width: 64px;
+    heigh: 64px;
+}
+
 .message-input-area {
     position: fixed;
     bottom: 0px;
