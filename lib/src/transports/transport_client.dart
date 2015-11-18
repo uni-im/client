@@ -4,12 +4,19 @@ import 'dart:async';
 
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/message.dart';
+import 'package:client/src/messages/presenter.dart';
 
 part 'loopback_transport_client.dart';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();
   Set<Channel> _subscriptions = new Set<Channel>();
+
+  MessageFactory messageFactory;
+
+  TransportClient(PresenterFactory pFactory) {
+    messageFactory = new MessageFactory(pFactory);
+  }
 
   Iterable<Channel> get channels => _channels;
   Iterable<Channel> get subscriptions => _subscriptions;
