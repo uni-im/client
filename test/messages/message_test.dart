@@ -17,6 +17,10 @@ void main() {
 
         expect(message, new isInstanceOf<MarkdownMessage>());
       });
+
+      test('should throw exception when type field of JSON is null', () {
+        expect(() => new Message.unmarshal({'data': {}}), throwsArgumentError);
+      });
     });
   });
 }
