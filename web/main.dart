@@ -15,7 +15,7 @@ class ImUniClient {
   String messageText;
 
   ImUniClient() {
-    WebSocket ws = new WebSocket('ws://magic-man.benjica.com:8081');
+    WebSocket ws = new WebSocket('ws://localhost:8081');
     ws
       ..onOpen.first.then((_) => _init(new WebSocketTransportClient(ws)))
       ..onError.first.then((_) => _init(new LoopbackTransportClient()));
