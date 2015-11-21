@@ -1,27 +1,17 @@
 /* Party times */
 
 body {
-    padding-top: 50px;
+    padding-top: 70px;
     height: 100%;
     width: 100%;
 }
 
-.sidebar {
-    position: fixed;
-    top: 51px;
-    display: block;
-    bottom: 0px;
-    left: 0px;
-    background-color: #EEE;
-    border-right: 1px solid #AAA;
-}
-
 .messages {
-    padding-bottom: 50px;
+    padding-bottom: 75px;
 }
 
 .avatar {
-    border-radius: 25%;
+    border-radius: 15%;
     width: 64px;
     heigh: 64px;
 }
@@ -34,4 +24,3 @@ body {
     padding-bottom: 10px;
     border-top: 1px solid #EEEEEE;
 }
-
