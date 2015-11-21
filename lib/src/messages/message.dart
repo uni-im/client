@@ -26,7 +26,10 @@ class MessageFactory {
   }
 
   Message createMessage(String messageText) {
-    return new MarkdownMessage()..body = messageText;
+    var message = new MarkdownMessage()..body = messageText;
+    message.presenter = presenterFactory.getPresenter(message);
+
+    return message;
   }
 }
 
