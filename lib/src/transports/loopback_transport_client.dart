@@ -30,5 +30,5 @@ class LoopbackTransportClient extends TransportClient {
   }
 
   /// Sends the given message across the loopback client for a given channel.
-  Future send(Channel c, Message m) async => _loopback.submit(c, m);
+  send(Channel c, Message m) => _loopback.submit(c, m);
 }

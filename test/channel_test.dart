@@ -21,5 +21,28 @@ void main() {
       channel.receive(message);
       expect(channel.messages.contains(message), isTrue);
     });
+
+    test('should have no agents', () {
+      // This is a catch to update tests when functionality is implemented
+      expect(channel.members, isEmpty);
+    });
+
+    test('should have null fileFactory', () {
+      expect(channel.files, isNull);
+    });
+  });
+
+  group('PrivateChannel', () {
+    PrivateChannel channel;
+
+    setUp(() {
+      channel = new PrivateChannel();
+    });
+
+    test('should have null agent', () {
+      // Catch for when the field is implemented
+      expect(channel.member, isNull);
+      expect(() => channel.title, throws);
+    });
   });
 }

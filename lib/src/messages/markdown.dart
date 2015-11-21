@@ -1,7 +1,6 @@
 library client.src.messages.markdown;
 
 import 'package:client/src/messages/message.dart';
-import 'package:client/src/agent.dart';
 
 class MarkdownMessage extends Message {
   final List<Message> _children = new List<Message>();
