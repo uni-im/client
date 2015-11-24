@@ -6,6 +6,20 @@ body {
     width: 100%;
 }
 
+.message-container img {
+  width: 100%;
+}
+
+.sidebar {
+    position: fixed;
+    top: 51px;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    background-color: #EEE;
+    border-right: 1px solid #AAA;
+}
+
 .messages {
     padding-bottom: 75px;
 }
