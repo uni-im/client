@@ -13,7 +13,7 @@ void main() {
     MockChannel channel;
 
     setUp(() {
-      client = new LoopbackTransportClient();
+      client = new LoopbackTransportClient(new MockPresenterFactory());
       channel = new MockChannel();
     });
 

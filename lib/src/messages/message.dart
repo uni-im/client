@@ -1,32 +1,41 @@
 library client.src.messages.message;
 
-import 'package:client/src/messages/markdown.dart';
 import 'package:client/src/agent.dart';
+import 'package:client/src/messages/markdown.dart';
+import 'package:client/src/messages/presenter.dart';
 
-abstract class Message {
-  Agent author;
-  Message();
+class MessageFactory {
+  PresenterFactory presenterFactory;
 
-  /// The unmarshal factory function is used to instantiate messages based on
-  /// the type encoded in the marshaled format.
-  factory Message.unmarshal(Map payload) {
+  MessageFactory(this.presenterFactory);
+
+  Message fromJson(Map payload) {
     if (payload['type'] == null) {
       throw new ArgumentError.notNull('data payload type');
     }
-
-    // TODO: switch to enums for profit and value
-    // TODO: add other message types
     switch (payload['type']) {
       case 'markdown':
-        var message = new MarkdownMessage.fromMap(payload);
-        message.author = new Agent(payload['author'] ?? "Unkown Author");
-
+        var message = new MarkdownMessage();
+        message.presenter = presenterFactory.getPresenter(message);
+        message.author = new Agent(payload['author']);
+        message.body = payload['body'];
         return message;
-      default:
-        // TODO: Define some default type of message
-        print('Recieved unknown message type: ${payload['type']}');
     }
+
+    return null;
   }
+
+  Message createMessage(String messageText) {
+    var message = new MarkdownMessage()..body = messageText;
+    message.presenter = presenterFactory.getPresenter(message);
+
+    return message;
+  }
+}
+
+abstract class Message {
+  Agent author;
+  Presenter presenter;
 
   // TODO: Write what a subclass of a message must do upon a render
   void render();

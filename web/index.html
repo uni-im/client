@@ -47,7 +47,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">{{message.author.name}}</h4>
-                        <p>{{ message.body }}</p>
+                         <div class='message-container' ng-bind-html="message.render()"></div>
                     </div>
                 </div>
                 <div class="row ">

@@ -6,16 +6,9 @@ class MarkdownMessage extends Message {
   final List<Message> _children = new List<Message>();
   String body;
 
-  MarkdownMessage(this.body);
+  MarkdownMessage();
 
-  factory MarkdownMessage.fromMap(Map data) {
-    var message = new MarkdownMessage(data['body']);
-    return message;
-  }
-
-  void render() {
-    // TODO: implement render
-  }
+  dynamic render() => presenter.present();
 
   Iterable<Message> get children => _children;
 

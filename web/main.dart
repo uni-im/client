@@ -1,47 +1,29 @@
-import 'package:angular/application_factory.dart';
-import 'package:di/annotations.dart';
-import 'package:client/client.dart';
 import 'dart:html';
-import 'package:client/src/transports/websocket_client.dart';
-import 'package:client/src/channel.dart';
-import 'package:client/src/messages/markdown.dart';
-import 'package:client/src/agent.dart';
 
-@Injectable()
-class ImUniClient {
-  TransportClient client;
-  Agent currentAgent = new Agent.random();
-  Channel selectedChannel;
-  String messageText;
+import 'package:angular/angular.dart';
+import 'package:angular/application_factory.dart';
+import 'src/im_uni_client.dart';
 
-  ImUniClient() {
-    WebSocket ws = new WebSocket('ws://localhost:8081');
-    ws
-      ..onOpen.first.then((_) => _init(new WebSocketTransportClient(ws)))
-      ..onError.first.then((_) => _init(new LoopbackTransportClient()));
-  }
+class AnyUriPolicy implements UriPolicy {
+  bool allowsUri(String uri) => true;
+}
 
-  void _init(TransportClient c) {
-    client = c;
+class UniImModule extends Module {
+  UniImModule() {
+    bind(NodeValidator, toFactory: () {
+      final validator = new NodeValidatorBuilder.common()
+        ..allowHtml5()
+        ..allowImages(new AnyUriPolicy())
+        ..allowNavigation(new AnyUriPolicy());
 
-    // TODO: Implement channel persistence across server
-    ['foo', 'bar', 'biz'].map(client.createChannel)..forEach(client.join);
-    selectedChannel = client.channels.first;
-  }
-
-  void selectChannel(Channel c) {
-    selectedChannel = c;
-  }
-
-  void sendMessage() {
-    MarkdownMessage m = new MarkdownMessage(messageText);
-    m.author = currentAgent;
-    client.send(selectedChannel, m);
-
-    (querySelector("#messageInput") as InputElement).value = "";
+      return validator;
+    });
   }
 }
 
 void main() {
-  applicationFactory().rootContextType(ImUniClient).run();
+  applicationFactory()
+      .rootContextType(ImUniClient)
+      .addModule(new UniImModule())
+      .run();
 }
