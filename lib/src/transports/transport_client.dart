@@ -1,6 +1,7 @@
 library client.src.transports.transport_client;
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/message.dart';
