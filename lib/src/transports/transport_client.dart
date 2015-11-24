@@ -7,6 +7,7 @@ import 'package:client/src/messages/message.dart';
 import 'package:client/src/messages/presenter.dart';
 
 part 'loopback_transport_client.dart';
+part 'transport_atoms.dart';
 
 abstract class TransportClient {
   List<Channel> _channels = new List();
