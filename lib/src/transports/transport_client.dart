@@ -6,17 +6,19 @@ import 'dart:convert';
 import 'package:client/src/channel.dart';
 import 'package:client/src/messages/message.dart';
 import 'package:client/src/messages/presenter.dart';
+import 'package:client/src/agent.dart';
 
 part 'loopback_transport_client.dart';
 part 'transport_atoms.dart';
 
 abstract class TransportClient {
+  Agent agent;
   List<Channel> _channels = new List();
   Set<Channel> _subscriptions = new Set<Channel>();
 
   MessageFactory messageFactory;
 
-  TransportClient(PresenterFactory pFactory) {
+  TransportClient(this.agent, PresenterFactory pFactory) {
     messageFactory = new MessageFactory(pFactory);
   }
 

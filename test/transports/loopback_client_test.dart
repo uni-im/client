@@ -10,7 +10,8 @@ import '../utils/mocks.dart';
 main() {
   group('LoopbackTransportClient', () {
     test('should notify a channel on submission', () async {
-      var client = new LoopbackTransportClient(new MockPresenterFactory());
+      var client = new LoopbackTransportClient(
+          new MockAgent(), new MockPresenterFactory());
       var channel = new MockChannel();
       var message = new MockMessage();
 
