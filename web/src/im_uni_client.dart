@@ -48,7 +48,7 @@ class ImUniClient {
   String messageText;
 
   ImUniClient() {
-    WebSocket ws = new WebSocket('ws://localhost:8081');
+    WebSocket ws = new WebSocket('ws://magic-man.benjica.com:8081/v1/ws');
     SimplePresenterFactory pFactory = new SimplePresenterFactory();
     ws
       ..onOpen.first.then((_) =>
