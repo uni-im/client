@@ -3,7 +3,8 @@ part of client.src.transports.transport_client;
 enum AtomType { message, control }
 
 AtomType atomTypeFromString(String type) =>
-    AtomType.values.firstWhere((v) => v.toString() == type, orElse: () => null);
+    AtomType.values.firstWhere((v) => v.toString() == type,
+        orElse: () => throw new ArgumentError.value(type));
 
 abstract class TransportAtom {
   final AtomType type;
@@ -27,8 +28,9 @@ class MessageAtom extends TransportAtom {
 }
 
 enum ControlType { agent }
-ControlType controlTypeFromString(String type) => ControlType.values
-    .firstWhere((v) => v.toString() == type, orElse: () => null);
+ControlType controlTypeFromString(String type) =>
+    ControlType.values.firstWhere((v) => v.toString() == type,
+        orElse: () => throw new ArgumentError.value(type));
 
 class ControlAtom extends TransportAtom {
   final ControlType control;
@@ -42,8 +44,9 @@ class ControlAtom extends TransportAtom {
 
 enum AgentCommand { joined, left }
 
-AgentCommand agentCommandFromString(String type) => AgentCommand.values
-    .firstWhere((v) => v.toString() == type, orElse: () => null);
+AgentCommand agentCommandFromString(String type) =>
+    AgentCommand.values.firstWhere((v) => v.toString() == type,
+        orElse: () => throw new ArgumentError.value(type));
 
 class AgentControlAtom extends ControlAtom {
   final AgentCommand command;
