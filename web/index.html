@@ -51,15 +51,16 @@
             <div class="col-xs-12 col-sm-12 col-md-12 messages">
                 <div ng-if="selectedChannel.messages.isEmpty"><em>There are no messages, be the first!</em></div>
                 <div ng-repeat="message in selectedChannel.messages" class="media">
-                    <div class="media-left media-top">
+                    <div ng-if="!message.isControl" class="media-left media-top">
                         <a href="#">
                             <img class="avatar media-object" src="http://api.adorable.io/avatars/64/{{message.author.name}}.png" alt="{{message.author.name}}'s avatar">
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{message.author.name}}</h4>
+                        <h4 ng-if="!message.isControl" class="media-heading">{{message.author.name}}</h4>
                          <div class='message-container' ng-bind-html="message.render()"></div>
                     </div>
+                  </div>
                 </div>
                 <div class="row ">
                     <div class="col-xs-12 col-sm-12 col-md-12 message-input-area">
