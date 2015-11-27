@@ -19,6 +19,10 @@ class MockMessage extends Mock implements Message {
   noSuchMethod(i) => super.noSuchMethod(i);
 }
 
+class MockMessageFactory extends Mock implements MessageFactory {
+  noSuchMethod(i) => super.noSuchMethod(i);
+}
+
 class MockPresenter extends Mock implements Presenter {
   noSuchMethod(i) => super.noSuchMethod(i);
 }
