@@ -25,6 +25,10 @@ class MessageAtom extends TransportAtom {
     return super.marshal(
         payload: {'message': message.marshal(), 'channel': channel.title});
   }
+
+  String toString() {
+    return "${message.author.name} sent a message on ${channel.title}";
+  }
 }
 
 enum ControlType { agent }
@@ -61,6 +65,10 @@ class AgentControlAtom extends ControlAtom {
       'agent': agent.name,
       'channel': channel?.title
     });
+  }
+
+  String toString() {
+    return "${agent.name} $command ${channel.title}";
   }
 }
 
