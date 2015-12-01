@@ -24,7 +24,8 @@ class _LoopbackContext {
 class LoopbackTransportClient extends TransportClient {
   final _Loopback _loopback = new _Loopback();
 
-  LoopbackTransportClient(PresenterFactory pFactory) : super(pFactory) {
+  LoopbackTransportClient(Agent agent, PresenterFactory pFactory)
+      : super(agent, pFactory) {
     _loopback.incoming.listen(
         (context) => notifySubscribers(context.channel, context.message));
   }

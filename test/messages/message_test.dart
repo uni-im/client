@@ -39,6 +39,11 @@ void main() {
           expect(message.presenter, same(presenter));
         });
 
+        test('should return control message', () {
+          var message = messageFactory.controlMessage('test message');
+          expect(message.presenter, same(presenter));
+        });
+
         test('should call presenter present call on render', () async {
           var message = messageFactory.fromJson(messageData);
           await message.render();

@@ -3,6 +3,7 @@ library client.src.messages.message;
 import 'package:client/src/agent.dart';
 import 'package:client/src/messages/markdown.dart';
 import 'package:client/src/messages/presenter.dart';
+import 'package:client/src/messages/control.dart';
 
 class MessageFactory {
   PresenterFactory presenterFactory;
@@ -31,11 +32,19 @@ class MessageFactory {
 
     return message;
   }
+
+  ControlMessage controlMessage(String messageText) {
+    var message = new ControlMessage(messageText);
+    message.presenter = presenterFactory.getPresenter(message);
+
+    return message;
+  }
 }
 
 abstract class Message {
   Agent author;
   Presenter presenter;
+  final bool isControl = false;
 
   // TODO: Write what a subclass of a message must do upon a render
   void render();

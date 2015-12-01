@@ -10,6 +10,7 @@ import 'package:client/src/messages/presenter.dart';
 import 'package:markdown/markdown.dart';
 import 'package:client/src/messages/message.dart';
 import 'package:angular/angular.dart';
+import 'package:client/src/messages/control.dart';
 
 class MarkdownPresenter extends Presenter {
   MarkdownMessage message;
@@ -21,9 +22,21 @@ class MarkdownPresenter extends Presenter {
   }
 }
 
+class ControlPresenter extends Presenter {
+  ControlMessage message;
+
+  ControlPresenter(this.message);
+
+  present() => '<em>${message.body}</em>';
+}
+
 class SimplePresenterFactory extends PresenterFactory {
   Presenter getPresenter(Message m) {
-    return new MarkdownPresenter(m);
+    if (m is MarkdownMessage) {
+      return new MarkdownPresenter(m);
+    } else {
+      return new ControlPresenter(m);
+    }
   }
 }
 
@@ -35,20 +48,23 @@ class ImUniClient {
   String messageText;
 
   ImUniClient() {
-    WebSocket ws = new WebSocket('ws://magic-man.benjica.com:8081');
+    WebSocket ws = new WebSocket('ws://magic-man.benjica.com:8081/v1/ws');
     SimplePresenterFactory pFactory = new SimplePresenterFactory();
     ws
-      ..onOpen
-          .first
-          .then((_) => _init(new WebSocketTransportClient(ws, pFactory)))
-      ..onError.first.then((_) => _init(new LoopbackTransportClient(pFactory)));
+      ..onOpen.first.then((_) =>
+          _init(new WebSocketTransportClient(ws, currentAgent, pFactory)))
+      ..onError.first.then(
+          (_) => _init(new LoopbackTransportClient(currentAgent, pFactory)));
+
+    window.onUnload
+        .listen((_) => client.subscriptions.toList().forEach(client.leave));
   }
 
   void _init(TransportClient c) {
     client = c;
 
     // TODO: Implement channel persistence across server
-    ['foo', 'bar', 'biz'].map(client.createChannel)..forEach(client.join);
+    ['foo', 'bar', 'biz'].map(client.createChannel).forEach(client.join);
     selectedChannel = client.channels.first;
   }
 
@@ -57,7 +73,7 @@ class ImUniClient {
   }
 
   void sendMessage() {
-    MarkdownMessage m = new MessageFactory(null).createMessage(messageText);
+    MarkdownMessage m = client.messageFactory.createMessage(messageText);
     m.author = currentAgent;
     client.send(selectedChannel, m);
 
