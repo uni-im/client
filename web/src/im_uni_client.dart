@@ -56,16 +56,15 @@ class ImUniClient {
       ..onError.first.then(
           (_) => _init(new LoopbackTransportClient(currentAgent, pFactory)));
 
-    window.onUnload.listen((_) {
-      client.subscriptions.forEach(client.leave);
-    });
+    window.onUnload
+        .listen((_) => client.subscriptions.toList().forEach(client.leave));
   }
 
   void _init(TransportClient c) {
     client = c;
 
     // TODO: Implement channel persistence across server
-    ['foo', 'bar', 'biz'].map(client.createChannel)..forEach(client.join);
+    ['foo', 'bar', 'biz'].map(client.createChannel).forEach(client.join);
     selectedChannel = client.channels.first;
   }
 
