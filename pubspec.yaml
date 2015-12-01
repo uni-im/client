@@ -1,5 +1,5 @@
 name: 'client'
-version: 0.1.0
+version: 0.2.0
 description: A simple rich content instant message platform.
 authors:
   - Zac Falkner <falkzach@gmail.com>
