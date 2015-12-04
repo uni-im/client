@@ -18,7 +18,7 @@ class ImUniClient {
   List<FileMessage> pendingFileMessages = [];
 
   ImUniClient() {
-    WebSocket ws = new WebSocket('ws://localhost:8081/v1/ws');
+    WebSocket ws = new WebSocket('ws://magic-man.benjica.com:8081/v1/ws');
     SimplePresenterFactory pFactory = new SimplePresenterFactory();
     ws
       ..onOpen.first.then((_) =>
@@ -42,7 +42,7 @@ class ImUniClient {
             sendFile(uri, contentType);
           }
         });
-        request.open('POST', 'http://localhost:8081/v1/upload');
+        request.open('POST', 'http://magic-man.benjica.com:8081/v1/upload');
         request.send(new FormData()..appendBlob('file', file));
       });
     });
