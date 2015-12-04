@@ -26,10 +26,6 @@ void main() {
       // This is a catch to update tests when functionality is implemented
       expect(channel.members, isEmpty);
     });
-
-    test('should have null fileFactory', () {
-      expect(channel.files, isNull);
-    });
   });
 
   group('PrivateChannel', () {
