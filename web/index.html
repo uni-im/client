@@ -66,11 +66,13 @@
       <div class="row ">
         <div class="col-xs-12 col-sm-12 col-md-12 message-input-area">
           <div class="input-group dropup">
-            <input ng-model="messageText" type="text" class="form-control" id="messageInput" placeholder="Your messages...">
+            <form ng-submit="sendMessage()">
+              <input ng-model="messageText" type="text" class="form-control" id="messageInput" placeholder="Your messages...">
+            </form>
             <div class="input-group-btn">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon glyphicon-option-horizontal"></span></button>
               <ul class="dropdown-menu dropdown-menu-right options-menu">
-                <li ng-click="attachFile()"><a href="#"><i class="glyphicon glyphicon glyphicon-file"></i>Add File<input id='file-upload' type='file'/></li>
+                <li ng-click="openFileSelector()"><a href="#"><i class="glyphicon glyphicon-file"></i> Send a File<input id='file-upload' type='file'/></li>
               </ul>
             </div>
           </div>

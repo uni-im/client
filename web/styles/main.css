@@ -10,8 +10,9 @@ body {
   display: none;
 }
 
-.message-container img {
-  width: 100%;
+.message-container img,
+.message-container video {
+  max-width: 100%;
 }
 
 .sidebar {
