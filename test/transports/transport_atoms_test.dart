@@ -1,13 +1,12 @@
 library test.transports.transport_atoms_test;
 
+import 'package:client/src/channel.dart';
+import 'package:client/src/messages/message.dart';
+import 'package:client/src/transports/transport_client.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:client/src/transports/transport_client.dart';
-
 import '../utils/mocks.dart';
-import 'package:client/src/messages/message.dart';
-import 'package:client/src/channel.dart';
 
 void main() {
   group('String to type function', () {
