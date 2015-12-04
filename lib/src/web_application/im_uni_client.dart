@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:client/client.dart';
+import 'package:client/src/transports/websocket_client.dart';
 import 'package:client/src/web_application/presenters/presenters.dart';
 import 'package:di/di.dart';
 
