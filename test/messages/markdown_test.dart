@@ -2,7 +2,6 @@ library test.messages.markdown_test;
 
 import 'package:test/test.dart';
 import 'package:client/src/agent.dart';
-import 'package:client/src/messages/markdown.dart';
 import 'package:client/src/messages/message.dart';
 import '../utils/mocks.dart';
 
@@ -10,7 +9,7 @@ void main() {
   group('MarkdownMessage', () {
     const messageText = 'test body';
     test('marshal should build a valid json string', () {
-      var message = new MarkdownMessage();
+      var message = new MarkdownMessage('bogus message');
       message.body = messageText;
       message.author = new Agent('mock user');
       var map = message.marshal();
@@ -29,7 +28,7 @@ void main() {
     });
 
     test('should handle child messages', () {
-      var message = new MarkdownMessage();
+      var message = new MarkdownMessage('bogus message');
       var childMessage = new MockMessage();
       message.add(childMessage);
 

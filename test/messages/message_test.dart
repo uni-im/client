@@ -4,7 +4,6 @@ import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:client/src/messages/message.dart';
-import 'package:client/src/messages/markdown.dart';
 
 import '../utils/mocks.dart';
 
