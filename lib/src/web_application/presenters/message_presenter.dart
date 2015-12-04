@@ -1,4 +1,4 @@
-part of web.src.im_uni_client;
+part of client.src.web_application.presenters.presenters;
 
 class MarkdownPresenter extends Presenter {
   MarkdownMessage message;
