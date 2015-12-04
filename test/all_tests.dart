@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 
 import 'agent_test.dart' as agent_tests;
 import 'channel_test.dart' as channel_tests;
-import 'messages/control_message.dart' as control_tests;
+import 'messages/control_message_test.dart' as control_tests;
 import 'messages/markdown_test.dart' as markdown_tests;
 import 'messages/message_test.dart' as message_tests;
 import 'transports/loopback_client_test.dart' as loopback_transport_tests;
