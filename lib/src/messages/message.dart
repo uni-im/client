@@ -45,9 +45,12 @@ abstract class Message {
   Agent author;
   Presenter presenter;
   final bool isControl = false;
+  bool viewed = false;
 
-  // TODO: Write what a subclass of a message must do upon a render
-  void render();
+  render() {
+    viewed = true;
+    return presenter.present();
+  }
 
   // TODO: Write what a sublcass of a message must do upon marshal
   Map marshal();

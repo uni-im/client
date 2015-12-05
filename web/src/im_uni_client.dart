@@ -68,6 +68,16 @@ class ImUniClient {
     selectedChannel = client.channels.first;
   }
 
+  int get totalUnviewedMessages {
+    if (client != null) {
+      return client.channels
+          .map((c) => c.unviewedMessages.length)
+          .reduce((sum, count) => sum + count);
+    } else {
+      return 0;
+    }
+  }
+
   void selectChannel(Channel c) {
     selectedChannel = c;
   }

@@ -8,8 +8,6 @@ class MarkdownMessage extends Message {
 
   MarkdownMessage();
 
-  dynamic render() => presenter.present();
-
   Iterable<Message> get children => _children;
 
   void add(Message m) => _children.add(m);

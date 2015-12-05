@@ -32,10 +32,19 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Subscriptions<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Subscriptions <span ng-if="totalUnviewedMessages > 0" class='badge'>{{ totalUnviewedMessages }}</span> <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">Group Channels</li>
-                <li ng-repeat="channel in client.channels" ng-class="{active: channel == selectedChannel}" ng-click="selectChannel(channel)"><a href="#">{{ channel.title }}</a></li>
+                <li ng-repeat="channel in client.channels" ng-class="{active: channel == selectedChannel}" ng-click="selectChannel(channel)">
+                  <a href="#">
+                    <span ng-if="channel.unviewedMessages.length > 0" class="badge">
+                      {{ channel.unviewedMessages.length }}
+                    </span>
+                    {{ channel.title }}
+                  </a>
+                </li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Private Channels</li>
                 <li><a href="#">Ben Campbell</a></li>

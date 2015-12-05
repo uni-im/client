@@ -14,6 +14,9 @@ abstract class Channel {
   void receive(Message m) => _messages.add(m);
 
   String get title;
+
+  Iterable<Message> get unviewedMessages =>
+      _messages.where((m) => !(m?.viewed ?? true));
 }
 
 class GroupChannel extends Channel {
