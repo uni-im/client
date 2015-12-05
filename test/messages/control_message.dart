@@ -26,5 +26,10 @@ void main() {
       expect(message.render(), equals('test message'));
       verify(presenter.present()).called(1);
     });
+
+    test('should be viewed by default', () {
+      var message = messageFactory.controlMessage('test message');
+      expect(message.viewed, isTrue);
+    });
   });
 }
