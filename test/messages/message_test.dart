@@ -1,59 +1,73 @@
 library test.messages.message_test;
 
-import 'package:test/test.dart';
-import 'package:mockito/mockito.dart';
-
 import 'package:client/src/messages/message.dart';
-import 'package:client/src/messages/markdown.dart';
+import 'package:client/src/messages/presenter.dart';
+import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
 
 import '../utils/mocks.dart';
 
 void main() {
-  group('Message', () {
-    group('factory function', () {
-      test('should throw ArgumentError if type is missing from map', () {
-        expect(
-            () => new MessageFactory(new MockPresenterFactory()).fromJson({}),
-            throwsArgumentError);
+  group('MessageFactory', () {
+    const presenterReturn = 'test present';
+    Presenter presenter = new MockPresenter();
+    PresenterFactory presenterFactory = new MockPresenterFactory();
+    MessageFactory messageFactory;
+
+    setUp(() {
+      when(presenterFactory.getPresenter(any)).thenReturn(presenter);
+      when(presenter.present()).thenReturn(presenterReturn);
+      messageFactory = new MessageFactory(presenterFactory);
+    });
+
+    test('should throw ArgumentError if type is missing from map', () {
+      expect(() => messageFactory.fromJson({}), throwsArgumentError);
+    });
+
+    group('with MarkdownMessage', () {
+      const messageBlob = const {'type': 'markdown', 'payload': const {}};
+      test('should return from valid json blob', () {
+        var message = messageFactory.fromJson(messageBlob);
+        expect(message, new isInstanceOf<MarkdownMessage>());
       });
 
-      group('with presenter factory', () {
-        const messageData = const {'type': 'markdown'};
-        var presenter = new MockPresenter();
-        var presenterFactory = new MockPresenterFactory();
-        MessageFactory messageFactory;
+      test('should return message with presenter from factory', () {
+        var message = messageFactory.createMessage('test message');
+        expect(message.presenter, same(presenter));
+      });
 
-        setUp(() {
-          when(presenterFactory.getPresenter(any)).thenReturn(presenter);
-          messageFactory = new MessageFactory(presenterFactory);
-        });
+      test('should call presenter present on render', () {
+        var message = messageFactory.createMessage('test message');
+        expect(message.render(), equals(presenterReturn));
+        verify(presenter.present()).called(1);
+      });
+    });
 
-        test('should return MarkdownMessage type from valid json blob', () {
-          var message = messageFactory.fromJson(messageData);
-          expect(message, new isInstanceOf<MarkdownMessage>());
-        });
+    group('with FileMessage', () {
+      const messageBlob = const {
+        'type': 'file',
+        'uri': 'http://localhost',
+        'content-type': 'text/text'
+      };
 
-        test('should return message with presenter returned from factory', () {
-          var message = messageFactory.createMessage('test message');
+      test('should return type from vaild json blob', () {
+        var message = messageFactory.fromJson(messageBlob);
+        expect(message, new isInstanceOf<FileMessage>());
+      });
 
-          expect(message.presenter, same(presenter));
-        });
+      test('should return message with presenter returned from factory', () {
+        var uri = Uri.parse("http://localhost:1234");
+        var contentType = 'text/text';
+        var message = messageFactory.createFileMessage(uri, contentType);
 
-        test('should return control message', () {
-          var message = messageFactory.controlMessage('test message');
-          expect(message.presenter, same(presenter));
-        });
+        expect(message.presenter, same(presenter));
+      });
+    });
 
-        test('should call presenter present call on render', () async {
-          var message = messageFactory.fromJson(messageData);
-          await message.render();
-
-          verify(presenter.present());
-        });
-
-        test('should throw exception when type field of JSON is null', () {
-          expect(() => messageFactory.fromJson({}), throwsArgumentError);
-        });
+    group('ControlMessage', () {
+      test('should return message with presenter from factory', () {
+        var message = messageFactory.controlMessage('test message');
+        expect(message.presenter, same(presenter));
       });
     });
   });

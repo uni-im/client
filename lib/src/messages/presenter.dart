@@ -1,6 +1,5 @@
 library client.src.messages.presenter;
 
-///
 abstract class Presenter {
   dynamic present();
 }
