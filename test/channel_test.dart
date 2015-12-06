@@ -1,6 +1,5 @@
 library test.channel_test;
 
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'package:client/src/channel.dart';
@@ -26,19 +25,6 @@ void main() {
     test('should have no agents', () {
       // This is a catch to update tests when functionality is implemented
       expect(channel.members, isEmpty);
-    });
-
-    test('should have null fileFactory', () {
-      expect(channel.files, isNull);
-    });
-
-    test('should count unviewed messages', () {
-      channel.receive(message);
-      when(message.viewed).thenReturn(true);
-      expect(channel.unviewedMessages.length, equals(0));
-
-      when(message.viewed).thenReturn(false);
-      expect(channel.unviewedMessages.length, equals(1));
     });
   });
 

@@ -2,13 +2,10 @@ library client.src.channel;
 
 import 'package:client/src/messages/message.dart';
 import 'package:client/src/agent.dart';
-import 'package:client/src/file_factory.dart';
 
 abstract class Channel {
   List<Message> _messages = new List<Message>();
-  FileFactory _fileFactory;
 
-  FileFactory get files => _fileFactory;
   Iterable<Message> get messages => _messages;
 
   void receive(Message m) => _messages.add(m);

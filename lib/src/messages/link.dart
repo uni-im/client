@@ -1,6 +1,4 @@
-library client.src.messages.link;
-
-import 'package:client/src/messages/message.dart';
+part of client.src.messages.message;
 
 class Link extends Message {
   String title;

@@ -56,34 +56,41 @@
       </div>
     </nav>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 messages">
-                <div ng-if="selectedChannel.messages.isEmpty"><em>There are no messages, be the first!</em></div>
-                <div ng-repeat="message in selectedChannel.messages" class="media">
-                    <div ng-if="!message.isControl" class="media-left media-top">
-                        <a href="#">
-                            <img class="avatar media-object" src="http://api.adorable.io/avatars/64/{{message.author.name}}.png" alt="{{message.author.name}}'s avatar">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 ng-if="!message.isControl" class="media-heading">{{message.author.name}}</h4>
-                         <div class='message-container' ng-bind-html="message.render()"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row ">
-                    <div class="col-xs-12 col-sm-12 col-md-12 message-input-area">
-                        <form ng-submit="sendMessage()" class="form">
-                            <input ng-model="messageText" type="text" class="form-control" id="messageInput" placeholder="Your messages...">
-                        </form>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 messages">
+          <div ng-if="selectedChannel.messages.isEmpty"><em>There are no messages, be the first!</em></div>
+          <div ng-repeat="message in selectedChannel.messages" class="media">
+            <div ng-if="!message.isControl" class="media-left media-top">
+              <a href="#">
+                <img class="avatar media-object" src="http://api.adorable.io/avatars/64/{{message.author.name}}.png" alt="{{message.author.name}}'s avatar">
+              </a>
             </div>
+            <div class="media-body">
+              <h4 ng-if="!message.isControl" class="media-heading">{{message.author.name}}</h4>
+              <div class='message-container' ng-bind-html="message.render()"></div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row ">
+        <div class="col-xs-12 col-sm-12 col-md-12 message-input-area">
+          <div class="input-group dropup">
+            <form ng-submit="sendMessage()">
+              <input ng-model="messageText" type="text" class="form-control" id="messageInput" placeholder="Your messages...">
+            </form>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon glyphicon-option-horizontal"></span></button>
+              <ul class="dropdown-menu dropdown-menu-right options-menu">
+                <li ng-click="openFileSelector()"><a href="#"><i class="glyphicon glyphicon-file"></i> Send a File<input id='file-upload' type='file'/></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-      <script async type="application/dart" src="main.dart"></script>
-      <script async src="packages/browser/dart.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="packages/bootstrap/js/bootstrap.js"></script>
+    <script async type="application/dart" src="main.dart"></script>
+    <script async src="packages/browser/dart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="packages/bootstrap/js/bootstrap.js"></script>
   </body>
 </html>

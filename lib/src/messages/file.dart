@@ -1,14 +1,38 @@
-library client.src.messages.file;
+part of client.src.messages.message;
 
-import 'package:client/src/messages/message.dart';
-
-class File extends Message {
-  String title;
-
-  File({this.title});
-
-  @override
-  Map marshal() => {'title': title};
+class FileMessageFactory {
+  FileMessage createFileMessage(Uri uri, String contentType) {
+    if (contentType.startsWith("image/")) {
+      return new Image(uri, contentType);
+    } else if (contentType.startsWith("video/")) {
+      return new Video(uri, contentType);
+    } else {
+      return new FileMessage(uri, contentType);
+    }
+  }
 }
 
-class Image extends File {}
+class FileMessage extends Message {
+  String title;
+  Uri uri;
+  String contentType;
+
+  FileMessage(this.uri, this.contentType);
+
+  @override
+  Map marshal() => {
+        'author': author.name,
+        'type': 'file',
+        'title': title,
+        'uri': uri.toString(),
+        'content-type': contentType
+      };
+}
+
+class Image extends FileMessage {
+  Image(Uri uri, String contentType) : super(uri, contentType);
+}
+
+class Video extends FileMessage {
+  Video(Uri uri, String contentType) : super(uri, contentType);
+}

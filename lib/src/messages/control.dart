@@ -1,6 +1,4 @@
-library client.src.messages.client;
-
-import 'package:client/src/messages/message.dart';
+part of client.src.messages.message;
 
 class ControlMessage extends Message {
   String body;
