@@ -1,6 +1,7 @@
 library client.src.web_application.im_uni_client;
 
 import 'dart:convert';
+import 'dart:js' as js;
 import 'dart:html';
 
 import 'package:client/client.dart';
@@ -78,5 +79,25 @@ class ImUniClient {
   void openFileSelector() {
     InputElement file = querySelector("#file-upload");
     file.click();
+  }
+
+  void openMultilineEditor() {
+    js.context.callMethod(r'$', ['#multiline-modal']).callMethod('modal', [
+      new js.JsObject.jsify({'show': true})
+    ]);
+  }
+
+  void sendMultilineMessage() {
+    InputElement inputElement = querySelector("#multiline-message-text-area");
+    MarkdownMessage message =
+        client.messageFactory.createMessage(inputElement.value);
+    message.author = currentAgent;
+
+    client.send(selectedChannel, message);
+
+    // TODO: Maybe handle submission errors without dismissing modal
+    inputElement.value = "";
+    js.context.callMethod(r'$', ['#multiline-modal'])
+        .callMethod('modal', ['hide']);
   }
 }
