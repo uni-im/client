@@ -69,6 +69,16 @@ class ImUniClient {
     (querySelector("#messageInput") as InputElement).value = "";
   }
 
+  int get totalUnviewedMessages {
+    if (client != null) {
+      return client.channels
+          .map((c) => c.unviewedMessages.length)
+          .reduce((sum, count) => sum + count);
+    } else {
+      return 0;
+    }
+  }
+
   void sendFile(Uri uri, String contentType) {
     var message = client.messageFactory.createFileMessage(uri, contentType);
     message.author = currentAgent;
