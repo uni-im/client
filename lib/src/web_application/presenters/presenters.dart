@@ -1,5 +1,7 @@
 library client.src.web_application.presenters.presenters;
 
+import 'package:markdown/markdown.dart';
+
 import 'package:client/src/messages/presenter.dart';
 import 'package:client/src/messages/message.dart';
 
