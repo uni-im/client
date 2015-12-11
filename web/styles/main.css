@@ -1,9 +1,45 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
+/* Party times */
 
-html, body {
-    width: 100%;
+body {
+    padding-top: 70px;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+
+.options-menu input {
+  display: none;
+}
+
+.message-container img,
+.message-container video {
+  max-width: 100%;
+}
+
+.sidebar {
+    position: fixed;
+    top: 51px;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    background-color: #EEE;
+    border-right: 1px solid #AAA;
+}
+
+.messages {
+    padding-bottom: 75px;
+}
+
+.avatar {
+    border-radius: 15%;
+    width: 64px;
+    heigh: 64px;
+}
+
+.message-input-area {
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #EEEEEE;
 }

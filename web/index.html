@@ -1,20 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
   <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="scaffolded-by" content="https://github.com/google/stagehand">
-      <title>client</title>
-
+      <title>Uni-IM Client</title>
+      <link rel="stylesheet" href="packages/bootstrap/css/bootstrap.css">
+      <link rel="stylesheet" href="packages/bootstrap/css/bootstrap-theme.css">
       <link rel="stylesheet" href="styles/main.css">
+
+      <script src="packages/web_components/webcomponents.min.js"></script>
+      <script src="packages/web_components/dart_support.js"></script>
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{ selectedChannel.title }}</a>
+        </div>
 
-    <div id="output"></div>
-
-  <script async type="application/dart" src="main.dart"></script>
-  <script async src="packages/browser/dart.js"></script>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Subscriptions <span ng-if="totalUnviewedMessages > 0" class='badge'>{{ totalUnviewedMessages }}</span> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Group Channels</li>
+                <li ng-repeat="channel in client.channels" ng-class="{active: channel == selectedChannel}" ng-click="selectChannel(channel)">
+                  <a href="#">
+                    <span ng-if="channel.unviewedMessages.length > 0" class="badge">
+                      {{ channel.unviewedMessages.length }}
+                    </span>
+                    {{ channel.title }}
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Private Channels</li>
+                <li><a href="#">Ben Campbell</a></li>
+                <li><a href="#">Zach Falkner</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 messages">
+          <div ng-if="selectedChannel.messages.isEmpty"><em>There are no messages, be the first!</em></div>
+          <div ng-repeat="message in selectedChannel.messages" class="media">
+            <div ng-if="!message.isControl" class="media-left media-top">
+              <a href="#">
+                <img class="avatar media-object" src="http://api.adorable.io/avatars/64/{{message.author.name}}.png" alt="{{message.author.name}}'s avatar">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 ng-if="!message.isControl" class="media-heading">{{message.author.name}}</h4>
+              <div class='message-container' ng-bind-html="message.render()"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-xs-12 col-sm-12 col-md-12 message-input-area">
+          <div class="input-group dropup">
+            <form ng-submit="sendMessage()">
+              <input ng-model="messageText" type="text" class="form-control" id="messageInput" placeholder="Your messages...">
+            </form>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon glyphicon-option-horizontal"></span></button>
+              <ul class="dropdown-menu dropdown-menu-right options-menu">
+                <li ng-click="openFileSelector()">
+                  <a href="#">
+                    <i class="glyphicon glyphicon-file"></i> Send a File<input id='file-upload' type='file'/>
+                  </a>
+                </li>
+                <li ng-click="openMultilineEditor()">
+                  <a href="#">
+                    <i class="glyphicon glyphicon-pencil"></i> Open Editor
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='multiline-modal' class="modal fade" tabindex="-1" role="dialog">
+      <div class="multiline-modal-dialog modal-dialog modal-lg">
+        <div class="multiline-content-content modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Multiline Editor</h4>
+          </div>
+          <div class="modal-body">
+            <textarea id="multiline-message-text-area" class="form-control" rows="20"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button ng-click="sendMultilineMessage()" type="button" class="btn btn-primary">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script async type="application/dart" src="main.dart"></script>
+    <script async src="packages/browser/dart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="packages/bootstrap/js/bootstrap.js"></script>
   </body>
 </html>

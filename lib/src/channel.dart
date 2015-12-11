@@ -1,17 +1,19 @@
-import 'package:client/src/client/messages/message.dart';
-import 'package:client/src/client/agent.dart';
-import 'package:client/src/client/FileFactory.dart';
+library client.src.channel;
+
+import 'package:client/src/messages/message.dart';
+import 'package:client/src/agent.dart';
 
 abstract class Channel {
   List<Message> _messages = new List<Message>();
-  FileFactory _fileFactory;
 
-  FileFactory get files => _fileFactory;
   Iterable<Message> get messages => _messages;
 
-  void recieve(Message m) => _messages.add(m);
+  void receive(Message m) => _messages.add(m);
 
   String get title;
+
+  Iterable<Message> get unviewedMessages =>
+      _messages.where((m) => !(m?.viewed ?? true));
 }
 
 class GroupChannel extends Channel {

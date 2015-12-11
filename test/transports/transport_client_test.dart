@@ -1,9 +1,11 @@
+library test.transports.transport_client_test;
+
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:client/src/client/transport_client.dart';
+import 'package:client/src/transports/transport_client.dart';
 
-import 'utils/mocks.dart';
+import '../utils/mocks.dart';
 
 void main() {
   group('TransportClient', () {
@@ -11,7 +13,8 @@ void main() {
     MockChannel channel;
 
     setUp(() {
-      client = new LoopbackTransportClient();
+      client = new LoopbackTransportClient(
+          new MockAgent(), new MockPresenterFactory());
       channel = new MockChannel();
     });
 
@@ -35,8 +38,13 @@ void main() {
       channels.forEach(client.join);
       client.notifySubscribers(channels[1], message);
 
-      verifyNever(channels.first.recieve(message));
-      verify(channels.last.recieve(message));
+      verifyNever(channels.first.receive(message));
+      verify(channels.last.receive(message));
+    });
+
+    test('should create channel', () {
+      var channel = client.createChannel('Test Channel');
+      expect(client.channels.contains(channel), isTrue);
     });
   });
 }
