@@ -32,12 +32,12 @@ void main() {
       });
 
       test('should return message with presenter from factory', () {
-        var message = messageFactory.createMessage('test message');
+        var message = messageFactory.createMarkdownMessage('test message');
         expect(message.presenter, same(presenter));
       });
 
       test('should call presenter present on render', () {
-        var message = messageFactory.createMessage('test message');
+        var message = messageFactory.createMarkdownMessage('test message');
         expect(message.render(), equals(presenterReturn));
         verify(presenter.present()).called(1);
       });
@@ -66,7 +66,7 @@ void main() {
 
     group('ControlMessage', () {
       test('should return message with presenter from factory', () {
-        var message = messageFactory.controlMessage('test message');
+        var message = messageFactory.createControlMessage('test message');
         expect(message.presenter, same(presenter));
       });
     });

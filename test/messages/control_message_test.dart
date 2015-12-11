@@ -22,18 +22,18 @@ void main() {
     });
 
     test('should marshal to empty map', () {
-      var message = messageFactory.controlMessage('test message');
+      var message = messageFactory.createControlMessage('test message');
       expect(message.marshal(), equals({}));
     });
 
     test('should render presenter output', () {
-      var message = messageFactory.controlMessage('test message');
+      var message = messageFactory.createControlMessage('test message');
       expect(message.render(), equals('test message'));
       verify(presenter.present()).called(1);
     });
 
     test('should be viewed by default', () {
-      var message = messageFactory.controlMessage('test message');
+      var message = messageFactory.createControlMessage('test message');
       expect(message.viewed, isTrue);
     });
   });
