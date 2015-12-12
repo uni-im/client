@@ -26,6 +26,7 @@ class LoopbackTransportClient extends TransportClient {
 
   LoopbackTransportClient(Agent agent, PresenterFactory pFactory)
       : super(agent, pFactory) {
+    // Notifiy observers that subject has changed.
     _loopback.incoming.listen(
         (context) => notifySubscribers(context.channel, context.message));
   }

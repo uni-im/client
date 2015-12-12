@@ -205,16 +205,21 @@ const List right = const [
   "yonath",
 ];
 
+/// The agent class represents the state for individual actors within the
+/// message library.
 class Agent {
   String name;
   String status;
 
   Agent(this.name);
 
+  /// Produces a new agent with a randomly generated name.
   factory Agent.random() {
     return new Agent(_randomName());
   }
 
+  /// Uses a list of random adjectives and famous scientists to create a unique
+  /// name.
   static String _randomName() {
     Random r = new Random();
 

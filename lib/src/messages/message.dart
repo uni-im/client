@@ -4,79 +4,35 @@ import 'package:client/src/agent.dart';
 import 'package:client/src/messages/presenter.dart';
 
 part 'control.dart';
+part 'factories/message_factory.dart';
+part 'factories/file_message_factory.dart';
 part 'file.dart';
 part 'markdown.dart';
 
+/// The general message caputers all state relevent to any message.
 abstract class Message {
+  /// The author of the message.
   Agent author;
+
+  /// The body of the message including all renderable text
+  String body;
+
+  /// The presenter delegate that produces an application indepdent output for
+  /// the message.
   Presenter presenter;
-  final bool isControl = false;
+
+  /// A flag of wether the message has been rendered.
   bool viewed = false;
 
+  /// Provides a mechanism to generate the body of a message as a value returned
+  /// by the presenter.
   render() {
     viewed = true;
     return presenter.present();
   }
 
-  // TODO: Write what a sublcass of a message must do upon marshal
+  /// Any message that becomes serialized must provide an implementation of the
+  /// marshalling function which returns a general datastructure that is used
+  /// by a transport.
   Map marshal();
-}
-
-class MessageFactory {
-  PresenterFactory presenterFactory;
-  FileMessageFactory fileMessageFactory;
-
-  MessageFactory(this.presenterFactory) {
-    fileMessageFactory = new FileMessageFactory();
-  }
-
-  Message fromJson(Map payload) {
-    if (payload['type'] == null) {
-      throw new ArgumentError.notNull('data payload type');
-    }
-
-    Message message;
-
-    switch (payload['type']) {
-      case 'markdown':
-        message = new MarkdownMessage(payload['body']);
-        break;
-      case 'file':
-        var uri = Uri.parse(payload['uri']);
-        var contentType = payload['content-type'];
-        message = fileMessageFactory.createFileMessage(uri, contentType);
-        break;
-    }
-
-    message.presenter = presenterFactory.getPresenter(message);
-    message.author = new Agent(payload['author']);
-
-    return message;
-  }
-
-  Message createMessage(String messageText) {
-    // TODO: Unify factory method names
-    var message = new MarkdownMessage(messageText);
-    message.presenter = presenterFactory.getPresenter(message);
-
-    return message;
-  }
-
-  FileMessage createFileMessage(Uri uri, String contentType) {
-    // TODO: Unify factory method names
-    FileMessage message =
-        fileMessageFactory.createFileMessage(uri, contentType);
-
-    message.presenter = presenterFactory.getPresenter(message);
-
-    return message;
-  }
-
-  ControlMessage controlMessage(String messageText) {
-    // TODO: Unify factory method names
-    var message = new ControlMessage(messageText);
-    message.presenter = presenterFactory.getPresenter(message);
-
-    return message;
-  }
 }
